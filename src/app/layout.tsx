@@ -2,7 +2,8 @@ import "./globals.css";
 
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
-import StoreProvider from "@/lib/store/providers";
+import ReactQueryProvider from "@/lib/store/providers/reactQuery";
+import StoreProvider from "@/lib/store/providers/redux";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +17,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </StoreProvider>
       </body>
     </html>
   );
